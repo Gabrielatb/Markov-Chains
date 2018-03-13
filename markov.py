@@ -65,7 +65,8 @@ def make_text(chains):
 
     # words = []
     for key, value in chains.items():
-        return key, valueg
+         return key, value
+    print words.append(value)
 
     # add each word to a list 
     # container = words 
