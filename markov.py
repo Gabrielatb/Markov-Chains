@@ -63,10 +63,34 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
+
     words = []
     new_key = choice(chains.keys())
+    value = choice(chains[new_key])
     words.extend(new_key)
-    print words
+    words.append(value)
+    
+    
+    while True:
+        new_key = (new_key[1], value)
+        if new_key in chains: 
+            words.append(chains[value])
+
+        new_value = chains[newest_key]
+        words.extend(new_value)
+        print words
+        if new_value == "am?":
+            break
+
+
+
+
+
+
+
+    #for word in chains:
+        
+
 
     # words = []
     # for key, value in chains.items():
