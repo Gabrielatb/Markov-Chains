@@ -1,6 +1,7 @@
 """Generate Markov text from text files."""
 
 from random import choice
+from sys import argv
 
 
 def open_and_read_file(file_path):
@@ -16,7 +17,7 @@ def open_and_read_file(file_path):
     return content
     data.close()
 
-print open_and_read_file('green-eggs.txt')
+# print open_and_read_file('gettysburg.txt')
 
 
 def make_chains(text_string):
@@ -49,9 +50,9 @@ def make_chains(text_string):
     words_string = text_string.strip()
     words_list = words_string.split()
 
-    for index in range(len(words_list)-2):
+    for index in range(len(words_list)-n):
         key = (words_list[index], words_list[index + 1])
-        value = words_list[index + 2]
+        value = words_list[index + n]
         if key in chains:
             chains[key].append(value)
         else:
@@ -62,60 +63,24 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
-
+    #print chains
 
     words = []
     new_key = choice(chains.keys())
-    value = choice(chains[new_key])
+    #value = choice(chains[new_key])
     words.extend(new_key)
-    words.append(value)
-    
-    
-    while True:
-        new_key = (new_key[1], value)
-        if new_key in chains: 
-            words.append(chains[value])
+    #words.append(value)
+    #chains[("I", "am?")] = None
 
-        new_value = chains[newest_key]
-        words.extend(new_value)
-        print words
-        if new_value == "am?":
-            break
+    while new_key in chains:
+        value = choice(chains[new_key])
+        words.append(value)
+        new_key = (new_key[1], value)   
+
+    return " ".join(words)
 
 
-
-
-
-
-
-    #for word in chains:
-        
-
-
-    # words = []
-    # for key, value in chains.items():
-        #return key, value
-    #     new_key = (key[1], value)
-    
-    # choice(key)
-    # words.append(key)
-    # print words
-
-    #     print words.append(value)
-
-    # add each word to a list 
-    # container = words 
-    # link(new key) = the second word in tuple key (at random) and random value word
-    # chains.choice(key)
-    #take key[1] and make key[0] in new key and value becomes new key[1]
-    #tuple[1], tuple[2], value
-    #choose first tuple 
-    # chains[chains.choice(key)]
-
-    # return " ".join(words)
-
-
-input_path = "green-eggs.txt"
+input_path = argv[1]
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
@@ -127,3 +92,5 @@ chains = make_chains(input_text)
 random_text = make_text(chains)
 
 print random_text
+print argv[1]
+print argv[2], argv[1]
