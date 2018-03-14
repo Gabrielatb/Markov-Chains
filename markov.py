@@ -63,10 +63,21 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
+    words = []
+    new_key = choice(chains.keys())
+    words.extend(new_key)
+    print words
+
     # words = []
-    for key, value in chains.items():
-         return key, value
-    print words.append(value)
+    # for key, value in chains.items():
+        #return key, value
+    #     new_key = (key[1], value)
+    
+    # choice(key)
+    # words.append(key)
+    # print words
+
+    #     print words.append(value)
 
     # add each word to a list 
     # container = words 
@@ -75,6 +86,8 @@ def make_text(chains):
     #take key[1] and make key[0] in new key and value becomes new key[1]
     #tuple[1], tuple[2], value
     #choose first tuple 
+    # chains[chains.choice(key)]
+
     # return " ".join(words)
 
 
